@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Despesas da Família</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f9f9f7; --surface: #fcfcfb; --borda: rgba(11,11,11,.10);
+    --text: #0b0b0b; --text-2: #52514e; --muted: #898781;
+    --grid: #e1e0d9; --base: #c3c2b7;
+    --serie: #2a78d6; --deemph: #c3c2b7;
+    --bom: #006300; --ruim: #d03b3b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --page: #0d0d0d; --surface: #1a1a19; --borda: rgba(255,255,255,.10);
+      --text: #f0efec; --text-2: #c3c2b7; --muted: #898781;
+      --grid: #2c2c2a; --base: #383835;
+      --serie: #3987e5; --deemph: #4a4a46;
+      --bom: #0ca30c; --ruim: #d03b3b;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --borda: rgba(255,255,255,.10);
+    --text: #f0efec; --text-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --base: #383835;
+    --serie: #3987e5; --deemph: #4a4a46;
+    --bom: #0ca30c; --ruim: #d03b3b;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--page); color: var(--text);
+         font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 980px; margin: 0 auto; padding: 20px 16px 48px; }
+  header h1 { font-size: 22px; margin: 0; }
+  header p { margin: 2px 0 0; color: var(--text-2); font-size: 13px; }
+  .filtros { display: flex; flex-wrap: wrap; gap: 12px; margin: 18px 0; }
+  .filtros label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--text-2); }
+  select { font: inherit; color: var(--text); background: var(--surface); border: 1px solid var(--borda);
+           border-radius: 8px; padding: 8px 10px; min-width: 170px; }
+  .kpis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .card { background: var(--surface); border: 1px solid var(--borda); border-radius: 12px; padding: 16px; }
+  .kpi .rotulo { font-size: 13px; color: var(--text-2); }
+  .kpi .valor { font-size: 26px; font-weight: 600; margin-top: 2px; white-space: nowrap; }
+  .kpi .sub { font-size: 12px; color: var(--text-2); margin-top: 2px; }
+  .positivo { color: var(--bom); } .negativo { color: var(--ruim); }
+  section.card { margin-top: 12px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid2 > .card { margin-top: 12px; }
+  h2 { font-size: 15px; margin: 0 0 12px; }
+  h2 small { font-weight: 400; color: var(--text-2); }
+  .vazio { color: var(--text-2); font-size: 14px; margin: 0; }
+  /* barras horizontais */
+  .linha { padding: 6px 0; outline: none; border-radius: 6px; cursor: default; }
+  .linha:focus-visible { box-shadow: 0 0 0 2px var(--serie); }
+  .topo { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; }
+  .topo .r { color: var(--text-2); overflow-wrap: anywhere; }
+  .topo .v { color: var(--text); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .trilho { border-left: 1px solid var(--base); margin-top: 4px; height: 12px; }
+  .barra { height: 12px; background: var(--serie); border-radius: 0 4px 4px 0; min-width: 2px; }
+  .linha:hover .barra, .linha:focus .barra { filter: brightness(1.12); }
+  /* colunas por mês */
+  .colunas { display: flex; align-items: flex-end; gap: 2px; height: 160px; border-bottom: 1px solid var(--base); }
+  .col { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+         height: 100%; cursor: pointer; outline: none; }
+  .col .bar { width: 100%; max-width: 24px; background: var(--deemph); border-radius: 4px 4px 0 0; min-height: 2px; }
+  .col.sel .bar { background: var(--serie); }
+  .col:hover .bar, .col:focus-visible .bar { filter: brightness(1.12); }
+  .col .cap { font-size: 11px; color: var(--text); white-space: nowrap; margin-bottom: 4px; min-height: 15px; }
+  .eixo { display: flex; gap: 2px; margin-top: 6px; }
+  .eixo span { flex: 1; text-align: center; font-size: 11px; color: var(--muted); }
+  /* tabelas */
+  .tabela { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; font-weight: 500; color: var(--text-2); border-bottom: 1px solid var(--base); padding: 6px 8px; }
+  td { border-bottom: 1px solid var(--grid); padding: 7px 8px; vertical-align: top; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td .cat { display: block; color: var(--text-2); font-size: 12px; }
+  tfoot td { font-weight: 600; border-bottom: none; }
+  .selo { display: block; font-size: 12px; color: var(--text-2); white-space: nowrap; margin-top: 2px; }
+  .selo::before { margin-right: 4px; }
+  .selo.ok::before { content: "✓"; color: var(--bom); }
+  .selo.atraso::before { content: "!"; color: var(--ruim); font-weight: 700; }
+  .selo.futuro::before { content: "○"; color: var(--muted); }
+  #tip { position: fixed; z-index: 10; pointer-events: none; background: var(--surface); color: var(--text);
+         border: 1px solid var(--borda); border-radius: 8px; padding: 8px 10px; font-size: 12px;
+         box-shadow: 0 4px 16px rgba(0,0,0,.15); max-width: 240px; }
+  #tip strong { display: block; font-size: 14px; }
+  #tip span { color: var(--text-2); }
+  @media (max-width: 640px) {
+    .kpis { grid-template-columns: 1fr; }
+    .grid2 { grid-template-columns: 1fr; gap: 0; }
+    .kpi .valor { font-size: 24px; }
+    select { min-width: 0; width: 100%; }
+    .filtros label { flex: 1 1 140px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Despesas da família</h1>
+    <p id="atualizado">Carregando…</p>
+  </header>
+
+  <div class="filtros">
+    <label>Mês <select id="f-mes"></select></label>
+    <label>Pessoa <select id="f-pessoa"><option value="">Todos</option></select></label>
+  </div>
+
+  <div class="kpis">
+    <div class="card kpi"><div class="rotulo">Receitas</div><div class="valor" id="k-rec">–</div><div class="sub" id="k-rec-sub"></div></div>
+    <div class="card kpi"><div class="rotulo">Despesas</div><div class="valor" id="k-desp">–</div><div class="sub" id="k-desp-sub"></div></div>
+    <div class="card kpi"><div class="rotulo">Saldo do mês</div><div class="valor" id="k-saldo">–</div><div class="sub">Receitas menos despesas</div></div>
+  </div>
+
+  <section class="card" id="card-meses" hidden>
+    <h2>Despesas por mês <small>· clique para escolher o mês</small></h2>
+    <div class="colunas" id="colunas"></div>
+    <div class="eixo" id="eixo"></div>
+  </section>
+
+  <div class="grid2">
+    <section class="card"><h2>Despesas por categoria</h2><div id="por-categoria"></div></section>
+    <section class="card" id="card-pessoa"><h2>Despesas por pessoa</h2><div id="por-pessoa"></div></section>
+  </div>
+
+  <section class="card">
+    <h2>Contas fixas do mês</h2>
+    <div class="tabela"><table>
+      <thead><tr><th>Dia</th><th>Conta</th><th class="num">Valor · situação</th></tr></thead>
+      <tbody id="t-fixos"></tbody><tfoot id="t-fixos-total"></tfoot>
+    </table></div>
+  </section>
+
+  <section class="card">
+    <h2>Lançamentos do mês</h2>
+    <div class="tabela"><table>
+      <thead><tr><th>Data</th><th>Descrição</th><th class="num">Valor</th></tr></thead>
+      <tbody id="t-lanc"></tbody>
+    </table></div>
+  </section>
+</main>
+<div id="tip" role="tooltip" hidden></div>
+
+<script>
+const BRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+const $ = id => document.getElementById(id);
+const hoje = new Date();
+const HOJE = `${hoje.getFullYear()}-${String(hoje.getMonth() + 1).padStart(2, '0')}-${String(hoje.getDate()).padStart(2, '0')}`;
+const estado = { mes: HOJE.slice(0, 7), pessoa: '' };
+let dados = { lancamentos: [], fixos: [] };
+
+function nomeMes(ym, curto) {
+  const [a, m] = ym.split('-').map(Number);
+  const s = new Date(a, m - 1, 1).toLocaleDateString('pt-BR', curto ? { month: 'short' } : { month: 'long', year: 'numeric' });
+  return (s[0].toUpperCase() + s.slice(1)).replace('.', '');
+}
+function mesSeguinte(ym, n = 1) {
+  const [a, m] = ym.split('-').map(Number);
+  const d = new Date(a, m - 1 + n, 1);
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
+}
+const soma = (lista, tipo) => lista.filter(x => x.tipo === tipo).reduce((s, x) => s + x.valor, 0);
+const daPessoa = lista => estado.pessoa ? lista.filter(x => x.quem.includes(estado.pessoa)) : lista;
+const doMes = ym => daPessoa(dados.lancamentos.filter(x => x.data.startsWith(ym)));
+function el(tag, attrs = {}, ...filhos) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) k === 'class' ? e.className = v : e.setAttribute(k, v);
+  for (const f of filhos) e.append(f instanceof Node ? f : document.createTextNode(f));
+  return e;
+}
+
+function fixosDoMes(ym) {
+  const [a, m] = ym.split('-').map(Number);
+  const ultimo = new Date(a, m, 0).getDate();
+  const lanc = doMes(ym);
+  const out = [];
+  for (const f of daPessoa(dados.fixos)) {
+    for (const d of f.dias) {
+      const dia = Math.min(d < 0 ? ultimo + d + 1 : d, ultimo);
+      const data = `${ym}-${String(dia).padStart(2, '0')}`;
+      const lancado = lanc.some(x => x.descricao === f.descricao);
+      if (!lancado && ((f.inicio && data < f.inicio) || (f.fim && data > f.fim))) continue;
+      out.push({ ...f, data, lancado });
+    }
+  }
+  return out.sort((x, y) => x.data.localeCompare(y.data) || x.descricao.localeCompare(y.descricao));
+}
+
+// tooltip
+const tip = $('tip');
+function mostrarTip(alvo, valor, rotulo, x, y) {
+  tip.replaceChildren(el('strong', {}, valor), el('span', {}, rotulo));
+  tip.hidden = false;
+  const r = alvo.getBoundingClientRect();
+  const px = x ?? r.left + r.width / 2, py = y ?? r.top;
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  tip.style.left = Math.max(8, Math.min(px - w / 2, innerWidth - w - 8)) + 'px';
+  tip.style.top = (py - h - 10 < 8 ? py + 18 : py - h - 10) + 'px';
+}
+function comTip(alvo, valor, rotulo) {
+  alvo.tabIndex = 0;
+  alvo.addEventListener('pointermove', e => mostrarTip(alvo, valor, rotulo, e.clientX, e.clientY));
+  alvo.addEventListener('focus', () => mostrarTip(alvo, valor, rotulo));
+  for (const ev of ['pointerleave', 'blur']) alvo.addEventListener(ev, () => { tip.hidden = true; });
+}
+
+function barras(alvo, itens, total) {
+  alvo.replaceChildren();
+  if (!itens.length) { alvo.append(el('p', { class: 'vazio' }, 'Nenhuma despesa neste mês.')); return; }
+  const max = Math.max(...itens.map(i => i.valor));
+  for (const i of itens) {
+    const barra = el('div', { class: 'barra' });
+    barra.style.width = (i.valor / max * 100) + '%';
+    const linha = el('div', { class: 'linha' },
+      el('div', { class: 'topo' }, el('span', { class: 'r' }, i.rotulo), el('span', { class: 'v' }, BRL.format(i.valor))),
+      el('div', { class: 'trilho' }, barra));
+    comTip(linha, BRL.format(i.valor), `${i.rotulo} · ${Math.round(i.valor / total * 100)}% das despesas`);
+    alvo.append(linha);
+  }
+}
+function agrupar(lista, chave) {
+  const m = new Map();
+  for (const x of lista) for (const k of [].concat(chave(x))) m.set(k, (m.get(k) || 0) + x.valor);
+  return [...m].map(([rotulo, valor]) => ({ rotulo, valor })).sort((a, b) => b.valor - a.valor);
+}
+
+function renderColunas() {
+  const comDados = [...new Set(dados.lancamentos.map(x => x.data.slice(0, 7)))].sort();
+  const card = $('card-meses');
+  if (comDados.length < 2) { card.hidden = true; return; }
+  card.hidden = false;
+  const meses = [];
+  for (let ym = comDados[0]; ym <= comDados.at(-1); ym = mesSeguinte(ym)) meses.push(ym);
+  const valores = meses.slice(-12).map(ym => ({ ym, valor: soma(doMes(ym), 'despesa') }));
+  const max = Math.max(...valores.map(v => v.valor), 1);
+  $('colunas').replaceChildren(); $('eixo').replaceChildren();
+  for (const v of valores) {
+    const bar = el('div', { class: 'bar' });
+    bar.style.height = (v.valor / max * 85) + '%';
+    const sel = v.ym === estado.mes;
+    const col = el('div', { class: 'col' + (sel ? ' sel' : '') }, el('div', { class: 'cap' }, sel ? BRL.format(v.valor).replace(/,\d\d$/, '') : ''), bar);
+    comTip(col, BRL.format(v.valor), `Despesas de ${nomeMes(v.ym).toLowerCase()}`);
+    col.addEventListener('click', () => { estado.mes = v.ym; $('f-mes').value = v.ym; render(); });
+    col.addEventListener('keydown', e => { if (e.key === 'Enter') col.click(); });
+    $('colunas').append(col);
+    $('eixo').append(el('span', {}, nomeMes(v.ym, true)));
+  }
+}
+
+function render() {
+  tip.hidden = true;
+  const lanc = doMes(estado.mes);
+  const fixos = fixosDoMes(estado.mes);
+  const rec = soma(lanc, 'receita'), desp = soma(lanc, 'despesa'), saldo = rec - desp;
+  $('k-rec').textContent = BRL.format(rec);
+  $('k-desp').textContent = BRL.format(desp);
+  $('k-saldo').textContent = (saldo > 0 ? '+' : '') + BRL.format(saldo);
+  $('k-saldo').className = 'valor ' + (saldo >= 0 ? 'positivo' : 'negativo');
+  $('k-rec-sub').textContent = `Fixas previstas: ${BRL.format(soma(fixos, 'receita'))}`;
+  const anterior = soma(doMes(mesSeguinte(estado.mes, -1)), 'despesa');
+  const comp = anterior > 0 && desp > 0 ? ` · ${desp >= anterior ? '▲' : '▼'} ${Math.abs(Math.round((desp / anterior - 1) * 100))}% vs ${nomeMes(mesSeguinte(estado.mes, -1), true).toLowerCase()}` : '';
+  $('k-desp-sub').textContent = `Fixas previstas: ${BRL.format(soma(fixos, 'despesa'))}${comp}`;
+
+  const despesas = lanc.filter(x => x.tipo === 'despesa');
+  barras($('por-categoria'), agrupar(despesas, x => x.grupo), desp);
+  $('card-pessoa').hidden = !!estado.pessoa;
+  barras($('por-pessoa'), agrupar(despesas, x => x.quem.length ? x.quem : ['Sem pessoa']), desp);
+  renderColunas();
+
+  const tf = $('t-fixos'); tf.replaceChildren();
+  const fixDesp = fixos.filter(f => f.tipo === 'despesa');
+  for (const f of fixDesp) {
+    const [cls, txt] = f.lancado ? ['ok', 'Lançado'] : f.data < HOJE ? ['atraso', 'Pendente'] : ['futuro', 'A vencer'];
+    tf.append(el('tr', {},
+      el('td', {}, f.data.slice(8)),
+      el('td', {}, f.descricao, el('span', { class: 'cat' }, `${f.grupo} › ${f.categoria}`)),
+      el('td', { class: 'num' }, BRL.format(f.valor), el('span', { class: 'selo ' + cls }, txt))));
+  }
+  if (!fixDesp.length) tf.append(el('tr', {}, el('td', { colspan: 3, class: 'vazio' }, 'Nenhuma conta fixa neste mês.')));
+  $('t-fixos-total').replaceChildren(fixDesp.length ? el('tr', {}, el('td', {}), el('td', {}, 'Total'),
+    el('td', { class: 'num' }, BRL.format(soma(fixDesp, 'despesa')))) : '');
+
+  const tl = $('t-lanc'); tl.replaceChildren();
+  for (const x of [...lanc].reverse()) {
+    const rec = x.tipo === 'receita';
+    tl.append(el('tr', {},
+      el('td', {}, `${x.data.slice(8)}/${x.data.slice(5, 7)}`),
+      el('td', {}, x.descricao, el('span', { class: 'cat' }, `${x.grupo} › ${x.categoria}${x.quem.length ? ' · ' + x.quem.join(', ') : ''}`)),
+      el('td', { class: 'num' + (rec ? ' positivo' : '') }, (rec ? '+' : '−') + BRL.format(x.valor))));
+  }
+  if (!lanc.length) tl.append(el('tr', {}, el('td', { colspan: 3, class: 'vazio' }, 'Nenhum lançamento neste mês.')));
+}
+
+async function iniciar() {
+  try {
+    const r = await fetch('dados.json', { cache: 'no-store' });
+    if (!r.ok) throw new Error(r.status);
+    dados = await r.json();
+  } catch (e) {
+    $('atualizado').textContent = 'Não foi possível carregar os dados.';
+    return;
+  }
+  const at = new Date(dados.atualizadoEm);
+  $('atualizado').textContent = `Atualizado em ${at.toLocaleDateString('pt-BR')} às ${at.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}`;
+
+  const meses = new Set(dados.lancamentos.map(x => x.data.slice(0, 7)));
+  meses.add(HOJE.slice(0, 7));
+  if (dados.fixos.length) meses.add(mesSeguinte(HOJE.slice(0, 7)));
+  for (const ym of [...meses].sort().reverse()) $('f-mes').append(el('option', { value: ym }, nomeMes(ym)));
+  $('f-mes').value = estado.mes;
+
+  const pessoas = [...new Set([...dados.lancamentos, ...dados.fixos].flatMap(x => x.quem))]
+    .sort((a, b) => (a.startsWith('Família') - b.startsWith('Família')) || a.localeCompare(b));
+  for (const p of pessoas) $('f-pessoa').append(el('option', { value: p }, p));
+
+  $('f-mes').addEventListener('change', e => { estado.mes = e.target.value; render(); });
+  $('f-pessoa').addEventListener('change', e => { estado.pessoa = e.target.value; render(); });
+  render();
+}
+iniciar();
+</script>
+</body>
+</html>

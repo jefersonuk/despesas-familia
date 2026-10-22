@@ -1,0 +1,651 @@
+{
+ "atualizadoEm": "2026-10-22T14:54-03:00",
+ "lancamentos": [
+  {
+   "data": "2026-10-01",
+   "tipo": "despesa",
+   "descricao": "Telefones celulares",
+   "grupo": "Contas da casa",
+   "categoria": "Celular",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 350.0
+  },
+  {
+   "data": "2026-10-01",
+   "tipo": "despesa",
+   "descricao": "Tênis – Cinthia",
+   "grupo": "Saúde",
+   "categoria": "Academia e esportes",
+   "quem": [
+    "Cinthia"
+   ],
+   "natureza": "Fixo",
+   "valor": 300.0
+  },
+  {
+   "data": "2026-10-01",
+   "tipo": "receita",
+   "descricao": "Empresa – Família",
+   "grupo": "Trabalho",
+   "categoria": "Empresa",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "",
+   "valor": 3000.0
+  },
+  {
+   "data": "2026-10-01",
+   "tipo": "receita",
+   "descricao": "Renda extra – Jeferson",
+   "grupo": "Trabalho",
+   "categoria": "Renda extra",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "",
+   "valor": 3000.0
+  },
+  {
+   "data": "2026-10-01",
+   "tipo": "receita",
+   "descricao": "Salário – Cinthia",
+   "grupo": "Trabalho",
+   "categoria": "Salário",
+   "quem": [
+    "Cinthia"
+   ],
+   "natureza": "",
+   "valor": 5000.0
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "despesa",
+   "descricao": "Aprovest – Davi",
+   "grupo": "Educação",
+   "categoria": "Cursos",
+   "quem": [
+    "Davi"
+   ],
+   "natureza": "Fixo",
+   "valor": 180.0
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "despesa",
+   "descricao": "Condomínio",
+   "grupo": "Moradia",
+   "categoria": "Condomínio",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 1500.0
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "despesa",
+   "descricao": "Escola – Davi",
+   "grupo": "Educação",
+   "categoria": "Mensalidade escolar",
+   "quem": [
+    "Davi"
+   ],
+   "natureza": "Fixo",
+   "valor": 1250.0
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "despesa",
+   "descricao": "Escola – Samuel",
+   "grupo": "Educação",
+   "categoria": "Mensalidade escolar",
+   "quem": [
+    "Samuel"
+   ],
+   "natureza": "Fixo",
+   "valor": 2260.0
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "despesa",
+   "descricao": "Futebol – Samuel",
+   "grupo": "Filhos",
+   "categoria": "Atividades extracurriculares",
+   "quem": [
+    "Samuel"
+   ],
+   "natureza": "Fixo",
+   "valor": 210.0
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "despesa",
+   "descricao": "Martin Bucer – Jeferson",
+   "grupo": "Educação",
+   "categoria": "Cursos",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "Fixo",
+   "valor": 650.0
+  },
+  {
+   "data": "2026-10-10",
+   "tipo": "despesa",
+   "descricao": "Taekwondo – Samuel",
+   "grupo": "Filhos",
+   "categoria": "Atividades extracurriculares",
+   "quem": [
+    "Samuel"
+   ],
+   "natureza": "Fixo",
+   "valor": 160.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "despesa",
+   "descricao": "Academia – Cinthia",
+   "grupo": "Saúde",
+   "categoria": "Academia e esportes",
+   "quem": [
+    "Cinthia"
+   ],
+   "natureza": "Fixo",
+   "valor": 400.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "despesa",
+   "descricao": "Aluguel",
+   "grupo": "Moradia",
+   "categoria": "Aluguel / Financiamento",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 4900.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "despesa",
+   "descricao": "Consórcio",
+   "grupo": "Finanças",
+   "categoria": "Consórcio",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 800.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "despesa",
+   "descricao": "Corrida – Cinthia",
+   "grupo": "Saúde",
+   "categoria": "Academia e esportes",
+   "quem": [
+    "Cinthia"
+   ],
+   "natureza": "Fixo",
+   "valor": 79.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "despesa",
+   "descricao": "Energia",
+   "grupo": "Contas da casa",
+   "categoria": "Energia elétrica",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 500.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "despesa",
+   "descricao": "Internet",
+   "grupo": "Contas da casa",
+   "categoria": "Internet",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 200.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "despesa",
+   "descricao": "Medicamentos – Jeferson",
+   "grupo": "Saúde",
+   "categoria": "Farmácia",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "Fixo",
+   "valor": 400.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "despesa",
+   "descricao": "TVs por assinatura",
+   "grupo": "Contas da casa",
+   "categoria": "TV e streaming",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 400.0
+  },
+  {
+   "data": "2026-10-20",
+   "tipo": "receita",
+   "descricao": "Salário (banco) – Jeferson",
+   "grupo": "Trabalho",
+   "categoria": "Salário",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "",
+   "valor": 15000.0
+  },
+  {
+   "data": "2026-10-30",
+   "tipo": "despesa",
+   "descricao": "Alvares – Jeferson",
+   "grupo": "Outros",
+   "categoria": "Outras despesas",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "Fixo",
+   "valor": 315.0
+  },
+  {
+   "data": "2026-10-30",
+   "tipo": "despesa",
+   "descricao": "Carro",
+   "grupo": "Transporte",
+   "categoria": "Carro (parcela/assinatura)",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 1400.0
+  }
+ ],
+ "fixos": [
+  {
+   "dias": [
+    1
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "receita",
+   "descricao": "Empresa – Família",
+   "grupo": "Trabalho",
+   "categoria": "Empresa",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "",
+   "valor": 3000.0
+  },
+  {
+   "dias": [
+    1
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "receita",
+   "descricao": "Renda extra – Jeferson",
+   "grupo": "Trabalho",
+   "categoria": "Renda extra",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "",
+   "valor": 3000.0
+  },
+  {
+   "dias": [
+    1
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "receita",
+   "descricao": "Salário – Cinthia",
+   "grupo": "Trabalho",
+   "categoria": "Salário",
+   "quem": [
+    "Cinthia"
+   ],
+   "natureza": "",
+   "valor": 5000.0
+  },
+  {
+   "dias": [
+    1
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Telefones celulares",
+   "grupo": "Contas da casa",
+   "categoria": "Celular",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 350.0
+  },
+  {
+   "dias": [
+    1
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Tênis – Cinthia",
+   "grupo": "Saúde",
+   "categoria": "Academia e esportes",
+   "quem": [
+    "Cinthia"
+   ],
+   "natureza": "Fixo",
+   "valor": 300.0
+  },
+  {
+   "dias": [
+    10
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Aprovest – Davi",
+   "grupo": "Educação",
+   "categoria": "Cursos",
+   "quem": [
+    "Davi"
+   ],
+   "natureza": "Fixo",
+   "valor": 180.0
+  },
+  {
+   "dias": [
+    10
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Condomínio",
+   "grupo": "Moradia",
+   "categoria": "Condomínio",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 1500.0
+  },
+  {
+   "dias": [
+    10
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Escola – Davi",
+   "grupo": "Educação",
+   "categoria": "Mensalidade escolar",
+   "quem": [
+    "Davi"
+   ],
+   "natureza": "Fixo",
+   "valor": 1250.0
+  },
+  {
+   "dias": [
+    10
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Escola – Samuel",
+   "grupo": "Educação",
+   "categoria": "Mensalidade escolar",
+   "quem": [
+    "Samuel"
+   ],
+   "natureza": "Fixo",
+   "valor": 2260.0
+  },
+  {
+   "dias": [
+    10
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Futebol – Samuel",
+   "grupo": "Filhos",
+   "categoria": "Atividades extracurriculares",
+   "quem": [
+    "Samuel"
+   ],
+   "natureza": "Fixo",
+   "valor": 210.0
+  },
+  {
+   "dias": [
+    10
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Martin Bucer – Jeferson",
+   "grupo": "Educação",
+   "categoria": "Cursos",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "Fixo",
+   "valor": 650.0
+  },
+  {
+   "dias": [
+    10
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Taekwondo – Samuel",
+   "grupo": "Filhos",
+   "categoria": "Atividades extracurriculares",
+   "quem": [
+    "Samuel"
+   ],
+   "natureza": "Fixo",
+   "valor": 160.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Academia – Cinthia",
+   "grupo": "Saúde",
+   "categoria": "Academia e esportes",
+   "quem": [
+    "Cinthia"
+   ],
+   "natureza": "Fixo",
+   "valor": 400.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Aluguel",
+   "grupo": "Moradia",
+   "categoria": "Aluguel / Financiamento",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 4900.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Consórcio",
+   "grupo": "Finanças",
+   "categoria": "Consórcio",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 800.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Corrida – Cinthia",
+   "grupo": "Saúde",
+   "categoria": "Academia e esportes",
+   "quem": [
+    "Cinthia"
+   ],
+   "natureza": "Fixo",
+   "valor": 79.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Energia",
+   "grupo": "Contas da casa",
+   "categoria": "Energia elétrica",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 500.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Internet",
+   "grupo": "Contas da casa",
+   "categoria": "Internet",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 200.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Medicamentos – Jeferson",
+   "grupo": "Saúde",
+   "categoria": "Farmácia",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "Fixo",
+   "valor": 400.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "receita",
+   "descricao": "Salário (banco) – Jeferson",
+   "grupo": "Trabalho",
+   "categoria": "Salário",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "",
+   "valor": 15000.0
+  },
+  {
+   "dias": [
+    20
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "TVs por assinatura",
+   "grupo": "Contas da casa",
+   "categoria": "TV e streaming",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 400.0
+  },
+  {
+   "dias": [
+    30
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Alvares – Jeferson",
+   "grupo": "Outros",
+   "categoria": "Outras despesas",
+   "quem": [
+    "Jeferson"
+   ],
+   "natureza": "Fixo",
+   "valor": 315.0
+  },
+  {
+   "dias": [
+    30
+   ],
+   "inicio": "2026-11-01",
+   "fim": "",
+   "tipo": "despesa",
+   "descricao": "Carro",
+   "grupo": "Transporte",
+   "categoria": "Carro (parcela/assinatura)",
+   "quem": [
+    "Família (todos)"
+   ],
+   "natureza": "Fixo",
+   "valor": 1400.0
+  }
+ ]
+}
