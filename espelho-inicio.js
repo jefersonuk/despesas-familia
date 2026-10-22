@@ -9,6 +9,18 @@
         s.crossOrigin = '';
         s.src = app;
         document.head.appendChild(s);
+        if (/\/(desktop|mobile)-/.test(app)) botaoResumo(/\/mobile-/.test(app));
+    }
+
+    // atalho para a página de resumo (entradas, saídas, contas e aplicações)
+    function botaoResumo(celular) {
+        var a = document.createElement('a');
+        a.href = 'resumo.html';
+        a.textContent = 'Resumo do mês';
+        a.setAttribute('style', 'position:fixed;z-index:9999;right:16px;bottom:' + (celular ? 'calc(70px + env(safe-area-inset-bottom))' : '20px') +
+            ';background:#c67e48;color:#fff;text-decoration:none;font:500 14px Roboto,-apple-system,system-ui,sans-serif;' +
+            'padding:9px 16px;border-radius:20px;box-shadow:0 4px 14px rgba(0,0,0,.3)');
+        document.body.appendChild(a);
     }
 
     function avisar(texto) {
